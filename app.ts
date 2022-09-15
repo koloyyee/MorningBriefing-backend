@@ -1,9 +1,9 @@
-import cors from "cors";
-import * as dotenv from "dotenv";
-import express from "express";
-import helmet from "helmet";
-import path from "node:path";
-import { newscatcher } from "./routes/index";
+import cors from 'cors';
+import * as dotenv from 'dotenv';
+import express from 'express';
+import helmet from 'helmet';
+import path from 'node:path';
+import { newscatcher } from './routes/index';
 dotenv.config();
 
 if (!process.env.PORT) {
@@ -23,6 +23,5 @@ app.use(cors());
 app.use(express.json());
 
 
-
-app.use("/newscatcher", newscatcher.router())
-app.listen(PORT, () => console.log(`running on ${PORT}`))
+app.use('/newscatcher', newscatcher.router());
+app.listen(PORT, () => console.log(`running on ${PORT}`));
