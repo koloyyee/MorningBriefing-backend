@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --pretty --transpile-only app.ts",
+    "dev": "ts-node-dev --respawn --pretty --transpile-only src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
+    "start:dev": "nodemon",
+    "start": "npm run build && node build/app.js",
     "build": "rimraf ./build && tsc",
     "pm2": "NODE_ENV=production pm2 start build/app.js --watch -i max",
     "pm2:staging": "NODE_ENV=staging pm2 start build/app.js --watch -i max"
@@ -32,6 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^5.37.0",
     "@typescript-eslint/parser": "^5.37.0",
     "eslint-config-google": "^0.14.0",
+    "rimraf": "^3.0.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.8.3"
   }
