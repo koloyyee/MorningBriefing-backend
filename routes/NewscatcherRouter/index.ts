@@ -1,7 +1,8 @@
 /* eslint-disable new-cap */
 /* eslint-disable require-jsdoc */
-import express, { Request, Response } from 'express';
-import NewscatcherService from '../service/newcatcher';
+import { AxiosError } from 'axios';
+import express, { Request, Response, Router } from 'express';
+import NewscatcherService from '../../service/Newcatcher';
 
 /*
 *   NewsCatcherRouter handling API fetch from NewscatcherAPI
@@ -12,11 +13,11 @@ import NewscatcherService from '../service/newcatcher';
 */
 class NewsCatcherRouter {
     constructor(
-        private despatcherService: NewscatcherService,
+        private newcatcherService: NewscatcherService,
     ) {
 
     }
-    public router() {
+    public router(): Router {
         const router = express.Router();
 
         router.get('/', this.headlines);
@@ -27,24 +28,28 @@ class NewsCatcherRouter {
 
     private headlines = async (_req: Request, res: Response) => {
         try {
-            const resp = await this.despatcherService.retrieveHeadline();
+            const resp = await this.newcatcherService.retrieveHeadline();
             res.json(resp);
         } catch (error) {
-            console.error(error);
+            // console.error(error);
             res.status(500);
             res.json({ success: false });
         }
     };
     private topicHeadline = async (req: Request, res: Response) => {
+        const topic = req.params.topic;
         try {
-            const topic = req.params.topic;
-            console.log(topic);
-            const resp = await this.despatcherService.retrieveHeadline(topic);
+            const resp = await this.newcatcherService.retrieveHeadline(topic);
             res.json(resp);
         } catch (error) {
-            console.error(error);
+            const err = error as AxiosError;
+            console.log(err.message);
+            console.log('fallback on backups');
+            const resp = await this.newcatcherService.fallbackFiles(topic);
+            res.json(resp);
+
             res.status(500);
-            res.json({ success: false });
+            // res.json({ success: false });
         }
     };
 }

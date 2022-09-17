@@ -9,7 +9,7 @@ export interface TempInterface {
     humidity: number
 }
 export interface CurrentWeatherInterface extends TempInterface {
-    icon: IconInterface['icon']
+    icon: IconInterface
 }
 // interface IconWeatherInterface {
 //     weather: IconInterface[]

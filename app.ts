@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 import express from 'express';
 import helmet from 'helmet';
 import path from 'node:path';
-import { newscatcher } from './routes/index';
+import { newscatcher, openWeather } from './routes/index';
 dotenv.config();
 
 if (!process.env.PORT) {
@@ -17,11 +17,17 @@ const app = express();
 // static file
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Middleware
+/**
+ * express middleware
+ */
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
+/**
+ * express api endpoints.
+ */
+app.use('/news', newscatcher.router());
+app.use('/weather', openWeather.router());
 
-app.use('/newscatcher', newscatcher.router());
 app.listen(PORT, () => console.log(`running on ${PORT}`));

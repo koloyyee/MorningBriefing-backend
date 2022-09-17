@@ -1,13 +1,20 @@
-import NewscatcherService from '../service/newcatcher';
-import NewsCatcherRouter from './newscatcher';
+import NewscatcherService from '../service/Newcatcher';
+import OpenWeatherService from '../service/OpenWeather';
+import NewsCatcherRouter from './NewscatcherRouter';
+import OpenWeatherRouter from './OpenWeatherRouter';
 
 // Services
 const newscatcherService = new NewscatcherService();
+const openWeatherService = new OpenWeatherService();
 
 // Routers
-// Dependency Injection
+// Dependency Injection with Service
 const newscatcher = new NewsCatcherRouter(newscatcherService);
+const openWeather = new OpenWeatherRouter(openWeatherService);
 
 
-export { newscatcher };
+export {
+    newscatcher,
+    openWeather,
+};
 
