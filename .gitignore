@@ -36,6 +36,10 @@ build/Release
 node_modules/
 jspm_packages/
 
+# special folder.
+models/
+mission/
+
 # Typescript v1 declaration files
 typings/
 
@@ -61,3 +65,4 @@ typings/
 .next
 
 .eslintrc.yml
+
