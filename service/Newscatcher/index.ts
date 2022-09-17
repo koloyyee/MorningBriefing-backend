@@ -68,7 +68,7 @@ class NewscatcherService {
         Promise<NewscatcherInterface | string> {
         const filePath = path.join(__dirname, `/backups/${topic}.json`);
         const backupData = fs.readFileSync(filePath);
-        return JSON.parse(backupData);
+        return JSON.parse(JSON.stringify(backupData));
     }
 }
 
