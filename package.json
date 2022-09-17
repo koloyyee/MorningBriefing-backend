@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
     "build": "rimraf ./build && tsc",
-    "pm2": "NODE_ENV=production pm2 start app.ts --watch"
+    "pm2": "NODE_ENV=production pm2 start build/app.js --watch -i max",
+    "pm2:staging": "NODE_ENV=staging pm2 start build/app.js --watch -i max"
   },
   "author": "",
   "license": "ISC",
