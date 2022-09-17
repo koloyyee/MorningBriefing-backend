@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 "use strict";
 // /* eslint-disable indent */
 // /* eslint-disable require-jsdoc */
