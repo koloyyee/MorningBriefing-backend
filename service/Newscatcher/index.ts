@@ -72,7 +72,6 @@ class NewscatcherService {
     }
 }
 
-const s = new NewscatcherService;
-s.fallbackFiles('tech');
+
 export default NewscatcherService;
 

@@ -2,7 +2,7 @@
 /* eslint-disable require-jsdoc */
 import { AxiosError } from 'axios';
 import express, { Request, Response, Router } from 'express';
-import NewscatcherService from '../../service/Newcatcher';
+import NewscatcherService from '../../service/Newscatcher';
 
 /*
 *   NewsCatcherRouter handling API fetch from NewscatcherAPI

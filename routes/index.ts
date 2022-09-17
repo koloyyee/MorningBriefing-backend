@@ -1,4 +1,4 @@
-import NewscatcherService from '../service/Newcatcher';
+import NewscatcherService from '../service/Newscatcher';
 import OpenWeatherService from '../service/OpenWeather';
 import NewsCatcherRouter from './NewscatcherRouter';
 import OpenWeatherRouter from './OpenWeatherRouter';
