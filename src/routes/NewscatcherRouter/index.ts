@@ -28,27 +28,28 @@ class NewsCatcherRouter {
 
     private headlines = async (_req: Request, res: Response) => {
         try {
-            const resp = await this.newcatcherService.retrieveHeadline();
-            res.json(resp);
+            let resp = await this.newcatcherService.retrieveHeadline();
+            return res.json(resp)
         } catch (error) {
-            // console.error(error);
-            res.status(500);
-            res.json({ success: false });
+            let resp = await this.newcatcherService.fallbackFiles("news");
+            console.log(res.json(resp))
+
+            const err = error as AxiosError;
+            console.log('fallback on backups')
+            console.log(err.message);
+
+            return res.json(resp);
         }
     };
     private topicHeadline = async (req: Request, res: Response) => {
         const topic = req.params.topic;
         try {
             const resp = await this.newcatcherService.retrieveHeadline(topic);
-            res.json(resp);
-        } catch (error) {
-            const err = error as AxiosError;
-            console.log(err.message);
-            console.log('fallback on backups');
-            const resp = await this.newcatcherService.fallbackFiles(topic);
-            res.json(resp);
 
-            res.status(500);
+            return res.json(resp);
+        } catch (error) {
+            const resp = await this.newcatcherService.fallbackFiles(topic);
+            return res.json(resp)
             // res.json({ success: false });
         }
     };

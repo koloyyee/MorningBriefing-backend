@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --pretty --transpile-only src/app.ts",
+    "dev": "ts-node-dev --respawn --pretty --transpile-only src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
     "start:dev": "nodemon",

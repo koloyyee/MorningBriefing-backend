@@ -30,7 +30,6 @@ const cors_1 = __importDefault(require("cors"));
 const dotenv = __importStar(require("dotenv"));
 const express_1 = __importDefault(require("express"));
 const helmet_1 = __importDefault(require("helmet"));
-const node_path_1 = __importDefault(require("node:path"));
 const index_1 = require("./routes/index");
 dotenv.config();
 if (!process.env.PORT) {
@@ -39,7 +38,11 @@ if (!process.env.PORT) {
 const PORT = parseInt(process.env.PORT);
 const app = (0, express_1.default)();
 // static file
-app.use(express_1.default.static(node_path_1.default.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
+app.use('/static', express_1.default.static('public'));
+// app.get("/", (req, res) => {
+//     res.sendFile(path.join(__dirname, "public/index.html"))
+// })
 /**
  * express middleware
  */

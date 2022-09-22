@@ -64,11 +64,12 @@ class NewscatcherService {
      * Read Backups by Topic
      * @param {string} topic - query by topic: news, business, tech, food.
      */
-    async fallbackFiles(topic: string):
+    async fallbackFiles(topic: string = "finance"):
         Promise<NewscatcherInterface | string> {
         const filePath = path.join(__dirname, `/backups/${topic}.json`);
         const backupData = fs.readFileSync(filePath);
-        return JSON.parse(JSON.stringify(backupData));
+        const result = JSON.parse(backupData.toString())
+        return result;
     }
 }
 
